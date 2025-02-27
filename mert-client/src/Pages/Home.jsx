@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Sensor Dashboard</h1>
+        <h1>Sensor Home</h1>
       </header>
       <main>
         <h2>Sensors</h2>

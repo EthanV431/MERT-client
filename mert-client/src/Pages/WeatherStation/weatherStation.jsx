@@ -6,7 +6,7 @@ const WeatherStation = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <h1><Link to="/">Sensor Dashboard</Link></h1>
+        <h1><Link to="/">Sensor Home</Link></h1>
       </header>
       <main>
         <h2>ZENTRA Weather Station</h2>
