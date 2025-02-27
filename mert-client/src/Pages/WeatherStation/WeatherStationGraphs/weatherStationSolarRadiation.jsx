@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const WeatherStationWindSpeed = () => {
+const WeatherStationSolarRadiation = () => {
   return (
     <div className="App">
       <header className="App-header">
@@ -16,11 +16,11 @@ const WeatherStationWindSpeed = () => {
             <li><Link to="/weatherStationTemperature">Temperature</Link></li>
             <li><Link to="/weatherStationPercipitation">Percipitation</Link></li>
           </ul>
-        <h2>Weather Station - Wind</h2>
+        <h2>Weather Station - Solar Radiation</h2>
         {/* Add your graphs here */}
       </main>
     </div>
   );
 };
 
-export default WeatherStationWindSpeed;
+export default WeatherStationSolarRadiation;
