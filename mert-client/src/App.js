@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './Pages/Home';
 import WeatherStation from './Pages/WeatherStation/weatherStation';
 import WeatherStationWindSpeed from './Pages/WeatherStation/WeatherStationGraphs/weatherStationWindSpeed';
@@ -12,16 +12,16 @@ import WeatherStationPercipitation from './Pages/WeatherStation/WeatherStationGr
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/weatherStation" component={WeatherStation} />
-        <Route path="/weatherStationWindSpeed" component={WeatherStationWindSpeed} />
-        <Route path="/weatherStationPressure" component={WeatherStationPressure} />
-        <Route path="/weatherStationLightning" component={WeatherStationLightning} />
-        <Route path="/weatherStationSolarRadiation" component={WeatherStationSolarRadiation} />
-        <Route path="/weatherStationTemperature" component={WeatherStationTemperature} />
-        <Route path="/weatherStationPercipitation" component={WeatherStationPercipitation} />
-      </Switch>
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/weatherStation" element={<WeatherStation />} />
+        <Route path="/weatherStationWindSpeed" element={<WeatherStationWindSpeed />} />
+        <Route path="/weatherStationPressure" element={<WeatherStationPressure />} />
+        <Route path="/weatherStationLightning" element={<WeatherStationLightning />} />
+        <Route path="/weatherStationSolarRadiation" element={<WeatherStationSolarRadiation />} />
+        <Route path="/weatherStationTemperature" element={<WeatherStationTemperature />} />
+        <Route path="/weatherStationPercipitation" element={<WeatherStationPercipitation />} />
+      </Routes>
     </Router>
   );
 }

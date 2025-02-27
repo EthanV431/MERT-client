@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../weatherStationGraphs.css';
 
-const WeatherStationPercipitation = () => {
+const WeatherStationTemperature = () => {
   return (
     <div className="App">
       <header className="App-header">
         <h1><Link to="/">Sensor Home</Link></h1>
       </header>
       <main>
+        <h2>Weather Station - Temperature</h2>
           <ul>
             <li><Link to="/weatherStationWindSpeed">Wind Speed</Link></li>
             <li><Link to="/weatherStationPressure">Pressure</Link></li>
@@ -16,11 +18,10 @@ const WeatherStationPercipitation = () => {
             <li><Link to="/weatherStationTemperature">Temperature</Link></li>
             <li><Link to="/weatherStationPercipitation">Percipitation</Link></li>
           </ul>
-        <h2>Weather Station - Percipitation</h2>
         {/* Add your graphs here */}
       </main>
     </div>
   );
 };
 
-export default WeatherStationPercipitation;
+export default WeatherStationTemperature;
