@@ -7,6 +7,9 @@ frontend:
     build:
       commands:
         - npm run build
+    postBuild:
+      commands:
+        - cp public/_redirects build/_redirects   # copy _redirects into build folder
   artifacts:
     baseDirectory: build
     files:
