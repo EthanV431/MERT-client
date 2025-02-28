@@ -6,7 +6,7 @@ const WeatherStationPressure = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <h1><Link to="/">Sensor Home</Link></h1>
+        <h1><Link to="MERT-client">Sensor Home</Link></h1>
       </header>
       <main>
         <h2>Weather Station - Pressure</h2>

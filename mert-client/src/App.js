@@ -13,7 +13,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/MERT-client" element={<Home />} />
         <Route path="/weatherStation" element={<WeatherStation />} />
         <Route path="/weatherStationWindSpeed" element={<WeatherStationWindSpeed />} />
         <Route path="/weatherStationPressure" element={<WeatherStationPressure />} />
