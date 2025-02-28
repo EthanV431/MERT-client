@@ -1,26 +1,35 @@
 # Use a lightweight Node.js image
-FROM node:18-alpine
+FROM node:18-alpine as build
 
 # Set the working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json (or yarn.lock)
-COPY package*.json ./
+# Copy package.json and package-lock.json first to cache dependencies
+COPY package.json package-lock.json ./
 
-# Install dependencies
-RUN npm install --production
+# Install dependencies (use `npm ci` for a clean install)
+RUN npm ci --only=production
 
 # Copy the rest of the application
 COPY . .
 
-# Build the React app
+# Build the React app for production
 RUN npm run build
 
-# Install a lightweight HTTP server to serve the built React app
+# Use a minimal Node.js image for serving
+FROM node:18-alpine
+
+# Set the working directory in the new container
+WORKDIR /app
+
+# Install `serve` globally to serve the React app
 RUN npm install -g serve
 
-# Expose the port (default: 3000, can be changed via ENV)
+# Copy the build files from the previous stage
+COPY --from=build /app/build /app/build
+
+# Expose port 4000
 EXPOSE 4000
 
-# Set the default command to serve the app
+# Serve the app using `serve`
 CMD ["serve", "-s", "build", "-l", "4000"]
