@@ -19,7 +19,7 @@ const WeatherStation = () => {
     "RH Sensor Temp",
     "Lightning Activity",
     "Lightning Distance",
-    "Vapor Prssure",
+    "Vapor Pressure",
     "Atmospheric Pressure",
     "Wind Speed",
     "Wind Direction",
