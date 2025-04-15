@@ -18,9 +18,15 @@ const WeatherStationLightning = () => {
   ], [])*/
 
   const [chartData, setChartData] = useState([]);
+  const [fromDateTime, setFromDateTime] = useState("2024-04-01T00:00");
+  const [untilDateTime, setUntilDateTime] = useState("2025-04-08T23:59");
+  
   useEffect(() => {
-    fetch('/mert/api/data?from=2024-04-01T00:00:00Z&until=2025-04-08T23:59:59Z')
-      .then(res => res.text()) // Use .text() to see raw response
+    const fromZ = new Date(fromDateTime).toISOString();
+    const untilZ = new Date(untilDateTime).toISOString();
+  
+    fetch(`/mert/api/data?from=${fromZ}&until=${untilZ}`)
+      .then(res => res.text())
       .then(rawText => {
         console.log("Raw response:", rawText);
         try {
@@ -32,7 +38,7 @@ const WeatherStationLightning = () => {
         }
       })
       .catch(err => console.error(err));
-  }, []);
+  }, [fromDateTime, untilDateTime]);
 
   const handleDownload = () => {
     const fileData = JSON.stringify(chartData, null, 2);
@@ -58,6 +64,21 @@ const WeatherStationLightning = () => {
           <li><Link to="/weatherStationTemperature"><button>Temperature</button></Link></li>
           <li><Link to="/weatherStationPercipitation"><button>Percipitation</button></Link></li>
           </ul>
+          <div>
+            <label>From:</label>
+            <input
+              type="datetime-local"
+              value={fromDateTime}
+              onChange={e => setFromDateTime(e.target.value)}
+            />
+
+            <label>Until:</label>
+            <input
+              type="datetime-local"
+              value={untilDateTime}
+              onChange={e => setUntilDateTime(e.target.value)}
+            />
+          </div>
         { chartData.length > 0 ? (
           <div>
             <h3>Lightning Strikes Over Time</h3>

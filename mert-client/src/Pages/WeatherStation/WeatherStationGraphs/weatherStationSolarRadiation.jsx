@@ -1,30 +1,39 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../weatherStationGraphs.css';
 import WeatherStationGraph from './weatherStationGraph';
 
 const WeatherStationSolarRadiation = () => {
-  const solarRadiationData = useMemo(() => [
-    { name: '00:00', value: 10 },
-    { name: '01:00', value: 20 },
-    { name: '02:00', value: 15 },
-    { name: '03:00', value: 25 },
-    { name: '04:00', value: 30 },
-    { name: '05:00', value: 35 },
-    { name: '06:00', value: 40 },
-    { name: '07:00', value: 50 },
-    { name: '08:00', value: 45 },
-    { name: '09:00', value: 55 }
-  ], []);
-
   const [chartData, setChartData] = useState([]);
-  useEffect(() => {
-    const fetchData = () => {
-      setChartData(solarRadiationData);
-    };
+  const [fromDateTime, setFromDateTime] = useState("2024-04-01T00:00");
+  const [untilDateTime, setUntilDateTime] = useState("2025-04-08T23:59");
 
-    fetchData();
-  }, [solarRadiationData]);
+  useEffect(() => {
+    const fromZ = new Date(fromDateTime).toISOString();
+    const untilZ = new Date(untilDateTime).toISOString();
+
+    fetch(`/mert/api/data?from=${fromZ}&until=${untilZ}`)
+      .then(res => res.text())
+      .then(rawText => {
+        try {
+          const data = JSON.parse(rawText);
+          setChartData(data);
+        } catch (error) {
+          console.error("Error parsing JSON:", error);
+        }
+      })
+      .catch(err => console.error(err));
+  }, [fromDateTime, untilDateTime]);
+
+  const handleDownload = () => {
+    const fileData = JSON.stringify(chartData, null, 2);
+    const blob = new Blob([fileData], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.download = 'solarRadiationData.json';
+    link.href = url;
+    link.click();
+  };
 
   return (
     <div className="App">
@@ -33,13 +42,27 @@ const WeatherStationSolarRadiation = () => {
       </header>
       <main>
         <h2>Weather Station - Solar Radiation</h2>
-          <ul>
-            <li><Link to="/weatherStationWindSpeed"><button>Wind Speed</button></Link></li>
-            <li><Link to="/weatherStationPressure"><button>Pressure</button></Link></li>
-            <li><Link to="/weatherStationLightning"><button>Lightning</button></Link></li>
-            <li><Link to="/weatherStationTemperature"><button>Temperature</button></Link></li>
-            <li><Link to="/weatherStationPercipitation"><button>Percipitation</button></Link></li>
-          </ul>
+        <ul>
+          <li><Link to="/weatherStationWindSpeed"><button>Wind Speed</button></Link></li>
+          <li><Link to="/weatherStationPressure"><button>Pressure</button></Link></li>
+          <li><Link to="/weatherStationLightning"><button>Lightning</button></Link></li>
+          <li><Link to="/weatherStationTemperature"><button>Temperature</button></Link></li>
+          <li><Link to="/weatherStationPercipitation"><button>Percipitation</button></Link></li>
+        </ul>
+        <div>
+          <label>From:</label>
+          <input
+            type="datetime-local"
+            value={fromDateTime}
+            onChange={e => setFromDateTime(e.target.value)}
+          />
+          <label>Until:</label>
+          <input
+            type="datetime-local"
+            value={untilDateTime}
+            onChange={e => setUntilDateTime(e.target.value)}
+          />
+        </div>
         { chartData.length > 0 ? (
           <div>
             <h3>Solar Radiation Over Time</h3>
@@ -48,6 +71,7 @@ const WeatherStationSolarRadiation = () => {
         ) : (
           <p>No solar radiation data available.</p>
         )}
+        <button onClick={handleDownload}>Download Solar Radiation Data</button>
       </main>
     </div>
   );
