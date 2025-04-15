@@ -43,11 +43,12 @@ const WeatherStationPressure = () => {
       <main>
         <h2>Weather Station - Pressure</h2>
         <ul>
-          <li><Link to="/weatherStationWindSpeed"><button>Wind Speed</button></Link></li>
-          <li><Link to="/weatherStationLightning"><button>Lightning</button></Link></li>
-          <li><Link to="/weatherStationSolarRadiation"><button>Solar Radiation</button></Link></li>
-          <li><Link to="/weatherStationTemperature"><button>Temperature</button></Link></li>
-          <li><Link to="/weatherStationPercipitation"><button>Percipitation</button></Link></li>
+            <li><Link to="/weatherStationWindSpeed"><button>Wind Speed</button></Link></li>
+            <li><Link to="/weatherStationPressure"><button>Pressure</button></Link></li>
+            <li><Link to="/weatherStationLightning"><button>Lightning</button></Link></li>
+            <li><Link to="/weatherStationSolarRadiation"><button>Solar Radiation</button></Link></li>
+            <li><Link to="/weatherStationTemperature"><button>Temperature</button></Link></li>
+            <li><Link to="/weatherStationPercipitation"><button>Percipitation</button></Link></li>
         </ul>
         <div>
           <label>From:</label>
