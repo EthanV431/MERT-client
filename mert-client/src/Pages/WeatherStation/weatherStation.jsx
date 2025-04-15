@@ -34,7 +34,7 @@ const WeatherStation = () => {
     const fromZ = new Date(fromDateTime).toISOString();
     const untilZ = new Date(untilDateTime).toISOString();
 
-    fetch(`https://alextitov.com/mert/api/data/${fromZ}/${untilZ}`)
+    fetch(`/mert/api/data/${fromZ}/${untilZ}`)
       .then(res => res.text())
       .then(rawText => {
         try {
