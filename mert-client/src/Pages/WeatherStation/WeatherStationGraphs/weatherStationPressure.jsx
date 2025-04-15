@@ -34,12 +34,11 @@ const WeatherStationPressure = () => {
       <main>
         <h2>Weather Station - Pressure</h2>
           <ul>
-            <li><Link to="/weatherStationWindSpeed">Wind Speed</Link></li>
-            <li><Link to="/weatherStationPressure">Pressure</Link></li>
-            <li><Link to="/weatherStationLightning">Lightning</Link></li>
-            <li><Link to="/weatherStationSolarRadiation">Solar Radiation</Link></li>
-            <li><Link to="/weatherStationTemperature">Temperature</Link></li>
-            <li><Link to="/weatherStationPercipitation">Percipitation</Link></li>
+            <li><Link to="/weatherStationWindSpeed"><button>Wind Speed</button></Link></li>
+            <li><Link to="/weatherStationLightning"><button>Lightning</button></Link></li>
+            <li><Link to="/weatherStationSolarRadiation"><button>Solar Radiation</button></Link></li>
+            <li><Link to="/weatherStationTemperature"><button>Temperature</button></Link></li>
+            <li><Link to="/weatherStationPercipitation"><button>Percipitation</button></Link></li>
           </ul>
         { chartData.length > 0 ? (
           <div>
