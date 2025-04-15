@@ -10,7 +10,7 @@ const Home = () => {
       <main>
         <h2>Sensors</h2>
         <ul>
-          <li><Link to="/weatherStation">Weather Station</Link></li>
+          <li><Link to="/weatherStation"><button>ZENTRA Weather Station</button></Link></li>
           {/* Add more sensors as needed */}
         </ul>
       </main>
